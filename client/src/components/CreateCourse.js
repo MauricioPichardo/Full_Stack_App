@@ -3,12 +3,7 @@ import React from 'react';
 
 export default (props) => {
   const {
-    title,
     errors,
-    description,
-    teacher,
-    time,
-    materials,
     submitText,
     elements,
     cancel,

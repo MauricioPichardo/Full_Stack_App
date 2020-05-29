@@ -9,7 +9,6 @@ export default class NewCourseDetail extends Component {
     description: '',
     estimatedTime: '',
     materialsNeeded: '',
-
     errors: [],
   }
 
@@ -19,12 +18,11 @@ export default class NewCourseDetail extends Component {
   render() {
         const { context } = this.props;
 
-  const authenticatedUser= context.authenticatedUser;
+
 
     const {
       title,
       description,
-      emailAddress,
       estimatedTime,
       materialsNeeded,
       errors,
@@ -114,7 +112,9 @@ change = (event) => {
 submit = () => {
 
   const { context } = this.props;
+  const {emailAddress, userId} = context.authenticatedUser;
 
+  const password = context.userPassword;
   const {
     title,
     description,
@@ -122,27 +122,29 @@ submit = () => {
     materialsNeeded,
   } = this.state;
 
+
   // Create course
   const course= {
     title,
     description,
     estimatedTime,
     materialsNeeded,
+    userId,
   };
 
 
 
+console.log(course);
 
+context.data.createCourse(course, {emailAddress, password})
+    .then( errors=> {
+      if (!errors) {
 
-context.data.createCourse(course)
-    .then( errors => {
-      console.log(errors);
-      if (errors.length) {
-        this.setState({ errors });
-      } else  {
            console.log('Course created successfully');
            this.props.history.push('/');
 
+         } else  {
+          this.setState({ errors });
          }})
          .catch( err => { // handle rejected promises
            console.log(err);

@@ -31,8 +31,8 @@ export default () => (
       <Switch>
         <Route exact path="/" component={HomeWithContext} />
 
-        <Route path="/authenticated" component={AuthWithContext} />
-        <Route path="/create_course" component={NewCourseDetailWithContext} />
+        <PrivateRoute path="/authenticated" component={AuthWithContext} />
+        <PrivateRoute path="/create_course" component={NewCourseDetailWithContext} />
         <Route path="/login" component={LogInWithContext} />
         <Route path="/signup" component={SignUpWithContext} />
         <Route path="/logout" component={LogOutWithContext} />

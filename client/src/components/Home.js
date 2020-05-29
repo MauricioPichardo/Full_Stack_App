@@ -7,6 +7,7 @@ export default ({ context  }) => {
 
     return (
     <div>
+    
     <NewCourse />
     </div>
     )

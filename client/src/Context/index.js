@@ -17,9 +17,10 @@ export class Provider extends Component {
 }
 
   render() {
-    const { authenticatedUser } = this.state;
+    const { authenticatedUser, userPassword } = this.state;
     const value = {
       authenticatedUser,
+      userPassword,
       data: this.data,
       actions: {
         signIn: this.signIn,
@@ -36,12 +37,15 @@ export class Provider extends Component {
   signIn = async (emailAddress, password) => {
      const user = await this.data.getUser(emailAddress, password);
      if (user !== null) {
+
        this.setState(() => {
          return {
            authenticatedUser: user,
+           userPassword: password
          };
        });
        Cookies.set('authenticatedUser', JSON.stringify(user), { expires: 1 });
+      Cookies.set('userPassword', JSON.stringify(password), {expires: 1});
      }
 
      return user;
@@ -51,9 +55,11 @@ export class Provider extends Component {
     this.setState(() => {
       return {
         authenticatedUser: null,
+        userPassword: null,
       };
     });
     Cookies.remove('authenticatedUser');
+    Cookies.remove('userPassword');
   }}
 
 

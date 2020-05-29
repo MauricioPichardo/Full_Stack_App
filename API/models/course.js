@@ -33,10 +33,6 @@ module.exports = (sequelize) => {
     type: Sequelize.STRING,
     allowNull: true
   },
-  materialsNeeded: {
-    type: Sequelize.STRING,
-    allowNull: true
-  },
   createdAt: {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW,
