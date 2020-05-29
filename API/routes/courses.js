@@ -96,7 +96,8 @@ router.get('/:id', asyncHandler(async(req, res) => {
       description: course.description,
       estimatedTime: course.estimatedTime,
       materialsNeeded: course.materialsNeeded,
-      userId: course.userId
+      userId: course.userId,
+      courseId: course.Id
 
     });
     return res.status(201).end();

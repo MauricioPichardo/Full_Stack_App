@@ -1,49 +1,82 @@
 import React from 'react';
 import '../static/css/global.css';
+import { Link } from 'react-router-dom';
+import Delete from './Delete'
+
+export default class CourseDetail extends React.PureComponent {
+  state = {
+    course: '',
+    user:'',
+    id:'',
+  }
 
 
 
-const CourseDetail =() => {
+  componentDidMount(){
+  const { context } = this.props;
+  const id = this.props.match.params.id
+  context.data.getCourse(id)
+      .then( course=> {
+            if (!course) {
+                 console.log('failed to return existing courses');
+               } else  {
+                this.setState({ course, id});
+               }})
+               .catch( err => { // handle rejected promises
+                 console.log(err);
+                 this.props.history.push('/error'); // push to history stack
+               });
+
+
+  }
+
+  render() {
+  const {state: { course }} = this;
+  const {state: { id}} = this;
+
+
   return (
+
+
   <div>
-    <div class="actions--bar">
-      <div class="bounds">
-        <div class="grid-100"><span><a class="button" href="update-course.html">Update Course</a><a class="button" href="#">Delete Course</a></span><a
-            class="button button-secondary" href="index.html">Return to List</a></div>
-      </div>
-    </div>
-    <div class="bounds course--detail">
-      <div class="grid-66">
-        <div class="course--header">
-          <h4 class="course--label">Course</h4>
-          <h3 class="course--title">Build a Basic Bookcase</h3>
-          <p>By Joe Smith</p>
+        <div className="actions--bar">
+                <div className="bounds">
+                        <div className="grid-100"><span>
+                        <Link className="button" to={{pathname: `/courses/${id}`}} >Update Course</Link>
+                        <Delete />
+                        </span>
+                </div></div>
+              </div>
+              <div className="bounds course--detail">
+                <div className="grid-66">
+                  <div className="course--header">
+                    <h4 className="course--label">Course</h4>
+                    <h3 className="course--title">{course.title}</h3>
+                    <p>By {course.firsName} {course.lastName}</p>
+                  </div>
+                  <div className="course--description">
+                  <p>  {course.description}</p>
+                  </div>
+                </div>
+                <div className="grid-25 grid-right">
+                  <div className="course--stats">
+                    <ul className="course--stats--list">
+                      <li className="course--stats--list--item">
+                        <h4>Estimated Time</h4>
+                        <h3>{course.estimatedTime}</h3>
+                      </li>
+                      <li className="course--stats--list--item">
+                        <h4>Materials Needed</h4>
+
+
+
+                        <ul>
+                              {course.materialsNeeded}
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+              </div>
         </div>
-        <div class="course--description">
-          <p>High-end furniture projects are great to dream about. But unless you have a well-equipped shop and some serious woodworking experience to draw on, it can be difficult to turn the dream into a reality.</p>
-        </div>
-      </div>
-      <div class="grid-25 grid-right">
-        <div class="course--stats">
-          <ul class="course--stats--list">
-            <li class="course--stats--list--item">
-              <h4>Estimated Time</h4>
-              <h3>14 hours</h3>
-            </li>
-            <li class="course--stats--list--item">
-              <h4>Materials Needed</h4>
-              <ul>
-                <li>1/2 x 3/4 inch parting strip</li>
-                <li>Minwax Oil Based Polyurethane</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
   </div>
-)};
-
-
-
-export default CourseDetail;
+)}};
