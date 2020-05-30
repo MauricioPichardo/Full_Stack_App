@@ -88,23 +88,24 @@ router.post('/', authenticateUser,async(req, res) => {
 
 
 /* get individual coursek =*/
-router.get('/:id', asyncHandler(async(req, res) => {
-  const course = await Course.findByPk(req.params.id);
-  if(course) {
-    res.json({
-      title: course.title,
-      description: course.description,
-      estimatedTime: course.estimatedTime,
-      materialsNeeded: course.materialsNeeded,
-      userId: course.userId,
-      courseId: course.Id
+router.get('/:id', async (req, res, next) => {
+  const course = await Course.findByPk(req.params.id, {
+    include : [{
+        model : User,
+        as: 'User',
+        attributes: ['id', 'firstName', 'lastName']
+      }
+    ],
+    attributes: { exclude: ['createdAt', 'updatedAt'] }
+  });
 
-    });
-    return res.status(201).end();
+  if (course === null) {
+    res.status(404).json({message: "This course does not exist"});
   } else {
-    res.sendStatus(404);
+    res.json(course)
+       .status(200).end();
   }
-}));
+});
 
 
 //update course wiht Authentication

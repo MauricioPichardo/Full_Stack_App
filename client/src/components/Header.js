@@ -1,7 +1,7 @@
 import React from 'react';
 import '../static/css/global.css';
 import { Link } from 'react-router-dom';
-import LogOut from './LogOut';
+import UserSignOut from './UserSignOut';
 
 
 export default class Header extends React.PureComponent {
@@ -16,7 +16,7 @@ export default class Header extends React.PureComponent {
             {authUser ?
               <React.Fragment>
                 <span>Welcome, {authUser.firstName}!</span>
-                <Link to="/logout">Sign Out</Link>
+                <UserSignOut props={context} />
               </React.Fragment>
             :
               <React.Fragment>

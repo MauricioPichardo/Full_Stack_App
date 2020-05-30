@@ -10,7 +10,7 @@ import NotFound from './components/NotFound';
 import SignUp from './components/SignUp';
 import LogIn from './components/LogIn';
 import Authenticated from './components/Authenticated';
-import LogOut from './components/LogOut';
+import UserSignOut from './components/UserSignOut';
 import withContext from './Context/index.js';
 import PrivateRoute from './PrivateRoute';
 import Home from  './components/Home';
@@ -21,7 +21,7 @@ const HeaderWithContext = withContext(Header);
 const AuthWithContext = withContext(Authenticated);
 const SignUpWithContext = withContext(SignUp);
 const LogInWithContext = withContext(LogIn);
-const LogOutWithContext = withContext(LogOut);
+const UserSignOutWithContext = withContext(UserSignOut);
 const HomeWithContext = withContext(Home);
 const NewCourseDetailWithContext = withContext(NewCourseDetail);
 const CourseDetailWithContext = withContext(CourseDetail);
@@ -32,16 +32,17 @@ export default () => (
     <div>
       <HeaderWithContext />
       <Switch>
-        <Route exact path="/" component={HomeWithContext} />
-        <PrivateRoute path="/authenticated" component={AuthWithContext} />
-        <Route path="/login" component={LogInWithContext} />
-        <Route path="/signup" component={SignUpWithContext} />
-        <Route path="/logout" component={LogOutWithContext} />
-        <Route exact path="/" component={HomeWithContext} />
-        <PrivateRoute path="/create_course" component={NewCourseDetailWithContext} />
-        <Route path="/course/:id" component={CourseDetailWithContext} />
-        <PrivateRoute path="/course/:id/update" component={UpdateCourseWithContext} />
-        <Route component={NotFound} />
+      <Route exact path="/" component={HomeWithContext} />
+      <PrivateRoute path="/authenticated" component={AuthWithContext} />
+      <Route path="/login" component={LogInWithContext} />
+      <Route path="/signup" component={SignUpWithContext} />
+      <Route path="/logout" component={UserSignOutWithContext} />
+      <Route exact path="/" component={HomeWithContext} />
+      <PrivateRoute path="/create_course" component={NewCourseDetailWithContext} />
+      <Route exact path="/course/:id" component={CourseDetailWithContext} />
+      <Route path="/course/:id/update" component={UpdateCourseWithContext} />
+      <Route component={NotFound} />
+
       </Switch>
     </div>
   </Router>

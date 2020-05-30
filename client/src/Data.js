@@ -84,10 +84,11 @@ export default class Data {
   }
 
   async deleteCourse(id,{emailAddress, password}) {
+    console.log(id,{emailAddress, password});
     const path = `/courses/${id}`;
     const response= await this.api(path, 'DELETE', null, true, {emailAddress, password});
-    if (response.status === 201) {
-      return [];
+    if (response.status === 204) {
+      return null;
     }
     else if (response.status === 400) {
       return response.json().then(data => {
@@ -104,6 +105,22 @@ export default class Data {
     console.log(course, {emailAddress, password});
     const response = await this.api('/courses', 'POST', course, true,  {emailAddress, password});
     if (response.status === 201) {
+      return null;
+    }
+    else if (response.status === 401) {
+      return response.json().then(data => {
+        return data.errors;
+      });
+    }
+    else {
+      throw new Error();
+    }
+  }
+
+  async updateCourse(course, {emailAddress, password}) {
+
+    const response = await this.api(`/courses/${course.id}`, 'PUT', course, true,  {emailAddress, password});
+    if (response.status === 204) {
       return null;
     }
     else if (response.status === 401) {
