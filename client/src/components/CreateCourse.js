@@ -23,7 +23,7 @@ export default (props) => {
 
 
 
-
+//Form to actually display
   return (
       <div className="bounds course--detail">
         <h1>Create Course</h1>

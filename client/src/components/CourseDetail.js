@@ -2,6 +2,11 @@ import React from 'react';
 import '../static/css/global.css';
 import { Link } from 'react-router-dom';
 import DeleteCourse from './DeleteCourse'
+import withContext from '../Context/index.js';
+import { withRouter } from "react-router-dom";
+const DeleteCourseWithContext = withContext(DeleteCourse);
+const WithDelete = withRouter(DeleteCourseWithContext);
+const ReactMarkdown = require('react-markdown')
 
 export default class CourseDetail extends React.PureComponent {
   state = {
@@ -21,9 +26,9 @@ export default class CourseDetail extends React.PureComponent {
   await context.data.getCourse(this.props.match.params.id)
     .then(response => {
       console.log(response);
-
+      /*checks to make sure authenticated user is available prior to comparing IDs*/
       if (context.authenticatedUser != null) {
-
+        /*compares ID of signed in and user*/
         if (context.authenticatedUser.userId === response.User.id) {
 
           this.setState({
@@ -44,14 +49,14 @@ export default class CourseDetail extends React.PureComponent {
 
 
   render() {
-  const {state: { course, id, context, emailAddress, password, user, authorizedUser}} = this;
+  const {state: { course, id, user, authorizedUser}} = this;
 
 
 
 
   return (
     <div>
-
+      {/* If comparitor showcasing Edit and delete options if owner of course*/}
     {authorizedUser ?
                 <div>
               <React.Fragment>
@@ -60,7 +65,7 @@ export default class CourseDetail extends React.PureComponent {
                                             <div className="grid-100">
                                           <Link className="button" to={{
                                           pathname:`/course/${id}/update`}}> Update Course</Link>
-                                          <DeleteCourse  email={emailAddress} id={id} password={password} context={context} />
+                                          <WithDelete course={course}/>
                                           <Link className="button button-secondary" to='/'>Return to List</Link></div>
                               </div>
 
@@ -92,7 +97,7 @@ export default class CourseDetail extends React.PureComponent {
                                       <p>By {user}</p>
                                     </div>
                                     <div className="course--description">
-                                                <p>  {course.description}</p>
+                                        <ReactMarkdown source={course.description} />
                                     </div>
                       </div>
 
@@ -100,13 +105,15 @@ export default class CourseDetail extends React.PureComponent {
           <div className="grid-25 grid-right">
             <div className="course--stats">
                     <ul className="course--stats--list">
+
                                 <li className="course--stats--list--item">
                                   <h4>Estimated Time</h4>
-                                  <h3>{course.estimatedTime}</h3>
+
+                                  <ReactMarkdown source={course.estimatedTime}  />
                                 </li>
                                 <li className="course--stats--list--item">
                                   <h4>Materials Needed</h4>
-                                  <ul>{course.materialsNeeded}</ul>
+                                  <ul><ReactMarkdown source={course.materialsNeeded} /></ul>
                                 </li>
                     </ul>
             </div>

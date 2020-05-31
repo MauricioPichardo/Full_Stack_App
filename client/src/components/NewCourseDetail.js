@@ -146,9 +146,9 @@ context.data.createCourse(course, {emailAddress, password})
          } else  {
           this.setState({ errors });
          }})
-         .catch( err => { // handle rejected promises
-           console.log(err);
-           this.props.history.push('/error'); // push to history stack
+         .catch( errors => { // handle rejected promises
+           console.log(errors);
+          this.setState({ errors });
          });
 
 }

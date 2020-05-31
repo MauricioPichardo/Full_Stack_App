@@ -1,28 +1,23 @@
 import React  from 'react';
 
-
-
+import { withRouter } from "react-router-dom";
 class DeleteCourse extends React.Component {
 
 
 state = {
-  email:'',
-  id:'',
+
   password:'',
-  errors:[]
+  errors:[],
+  redirect: '/',
 }
-
-
-
 
 
 render(){
   const {context}=this.props;
-  const emailAddress=this.props.email;
-  const id=this.props.id;
-  const password=this.props.password;
-  const { errors
-  } = this.state;
+  const id=this.props.course.id;
+  const emailAddress=this.props.context.authenticatedUser.emailAddress;
+  const password=this.props.context.userPassword;
+
 
 
   return (
@@ -31,23 +26,27 @@ render(){
   )
 
 
+
+//actional function to kick off destroy
   function deleteThis() {
   context.data.deleteCourse(id, {emailAddress,password})
         .then( errors=> {
           if (!errors) {
-               console.log('Course deleted');
-                    this.props.history.push('/');
+            console.log('Successful Deletion');
+
              } else  {
               this.setState({ errors });
              }})
-             .catch( err => { // handle rejected promises
-              console.log(errors);
+             .catch( err=> { // handle rejected promises
+                console.log(err);
              });
        }
+
+
+
+
 }
 
-
-
 }
 
-export default DeleteCourse
+export default withRouter(DeleteCourse);

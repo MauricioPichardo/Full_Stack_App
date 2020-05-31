@@ -61,9 +61,9 @@ export class Provider extends Component {
     });
     Cookies.remove('authenticatedUser');
     Cookies.remove('userPassword');
-  }}
+  }
 
-
+}
 
 
 export default function withContext(Component) {

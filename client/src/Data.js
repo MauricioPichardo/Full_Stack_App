@@ -88,6 +88,7 @@ export default class Data {
     const path = `/courses/${id}`;
     const response= await this.api(path, 'DELETE', null, true, {emailAddress, password});
     if (response.status === 204) {
+
       return null;
     }
     else if (response.status === 400) {
