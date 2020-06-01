@@ -1,5 +1,5 @@
 import React from 'react';
-
+//Used for Both Update and Create Class
 
 export default (props) => {
   const {
@@ -22,24 +22,17 @@ export default (props) => {
 
 
 
-
 //Form to actually display
   return (
       <div className="bounds course--detail">
         <h1>Create Course</h1>
         <div>
           <div>
-            <h2 className="validation--errors--label">Validation errors</h2>
-            <div className="validation-errors">
-              <ul>
-                <li>Please provide a value for "Title"</li>
-                <li>Please provide a value for "Description"</li>
-              </ul>
+          <ErrorsCourse errors={errors} />
             </div>
           </div>
-        <ErrorsCourse errors={errors} />
-          <form onSubmit={newCourse}>
 
+          <form onSubmit={newCourse}>
                       {elements()}
                       <div className="pad-bottom">
                       </div>
@@ -53,7 +46,7 @@ export default (props) => {
                       </div>
           </form>
     </div>
-    </div>
+
   );
 }
 

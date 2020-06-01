@@ -2,6 +2,8 @@ import React, {Component}  from 'react';
 import '../static/css/global.css';
 import CreateCourse from './CreateCourse'
 
+//Component to Initiate Create Course
+
 
 export default class NewCourseDetail extends Component {
   state = {
@@ -133,9 +135,7 @@ submit = () => {
   };
 
 
-
-console.log(course);
-
+//Will Return Null if Successful//will Return Erros if not
 context.data.createCourse(course, {emailAddress, password})
     .then( errors=> {
       if (!errors) {

@@ -1,5 +1,5 @@
 import React from 'react';
-
+//Used for SignUP
 export default (props) => {
   const {
     cancel,
@@ -35,7 +35,6 @@ export default (props) => {
 
 function ErrorsDisplay({ errors }) {
   let errorsDisplay = null;
-
   if (errors.length) {
     errorsDisplay = (
       <div>
