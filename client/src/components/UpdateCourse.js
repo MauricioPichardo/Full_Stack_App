@@ -84,7 +84,7 @@ return(
             <li className="course--stats--list--item">
                 <h4>Estimated Time</h4>
                 <input
-                  id="time"
+                  id="estimatedtime"
                   name="estimatedTime"
                   type="text"
                   value={this.state.value}
@@ -94,7 +94,7 @@ return(
                   <li className="course--stats--list--item">
                     <h4>Materials Needed</h4>
                 <textarea
-                  id="materials"
+                  id="materialsNeeded"
                   name="materialsNeeded"
                   type="materials"
                   value={this.state.value}
@@ -126,6 +126,7 @@ change = (event) => {
 
 submit = () => {
 
+
   const { context } = this.props;
   const {emailAddress, userId} = context.authenticatedUser;
   const password = context.userPassword;
@@ -137,7 +138,7 @@ submit = () => {
     materialsNeeded,
     id,
     errors
-  } = this.state;
+  } = this.state.course;
 
 
   // Create course
@@ -146,11 +147,10 @@ submit = () => {
     description,
     estimatedTime,
     materialsNeeded,
-    userId,
     id,
   };
 
-console.log({course});
+
 
 
 context.data.updateCourse(course, {emailAddress, password})
