@@ -15,6 +15,7 @@ export default class CourseDetail extends React.PureComponent {
       user: '',
       authorizedUser: false
 
+
   }
 
 
@@ -49,8 +50,8 @@ export default class CourseDetail extends React.PureComponent {
 
 
   render() {
-  const {state: { course, id, user, authorizedUser}} = this;
-
+  const {state: { course, user, authorizedUser}} = this;
+  const id= this.props.match.params.id;  //Corrected to ensure abilility to access update component/route
 
 
 
