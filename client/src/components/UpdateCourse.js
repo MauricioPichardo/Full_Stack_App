@@ -1,13 +1,16 @@
 import React, {Component}  from 'react';
 import '../static/css/global.css';
-import CreateCourse from './CreateCourse'
+import UpCourse from './UpCourse'
 
 export default class UpdatedCourse extends Component {
   state = {
-    course: '',
-    user:'',
-    id:'',
-    errors:[],
+    title: '',
+    description: '',
+    estimatedTime: '',
+    materialsNeeded: '',
+    course:'',
+    id: '',
+    errors: [],
   }
 
 
@@ -35,8 +38,6 @@ export default class UpdatedCourse extends Component {
 
 
   render() {
-    const {state: { course }} = this;
-
 
 
     const {
@@ -44,12 +45,10 @@ export default class UpdatedCourse extends Component {
     } = this.state;
 
 
-
-
 return(
 
   <div>
-  <CreateCourse
+  <UpCourse
     cancel={this.cancel}
     errors={errors}
     submit={this.submit}
@@ -58,23 +57,20 @@ return(
       <React.Fragment>
       <div className="grid-66">
         <div className="course--header">
-          <h4 className="course--label">Update Course</h4>
+          <h4 className="course--label">Course Title</h4>
               <input
                 id="title"
                 name="title"
                 type="text"
                 value={this.state.value}
-                onChange={this.change}
-                placeholder={course.title} />
-                <p>By </p>
+                onChange={this.change} />
               <textarea
                 className=""
                 id="description"
                 name="description"
                 type="text"
                 value={this.state.value}
-                onChange={this.change}
-                placeholder={course.description}/>
+                onChange={this.change}/>
 
                 </div>
       </div>
@@ -89,7 +85,7 @@ return(
                   type="text"
                   value={this.state.value}
                   onChange={this.change}
-                  placeholder={course.estimatedTime} />
+                  placeholder={this.state.course.estimatedTime} />
                                     </li>
                   <li className="course--stats--list--item">
                     <h4>Materials Needed</h4>
@@ -99,7 +95,7 @@ return(
                   type="materials"
                   value={this.state.value}
                   onChange={this.change}
-                  placeholder={course.materialsNeeded} />
+                  placeholder={this.state.course.materialsNeeded}/>
             </li>
           </ul>
         </div>
@@ -115,6 +111,7 @@ change = (event) => {
   const name = event.target.name;
   const value = event.target.value;
 
+
   this.setState(() => {
     return {
       [name]: value
@@ -128,7 +125,7 @@ submit = () => {
 
 
   const { context } = this.props;
-  const {emailAddress, userId} = context.authenticatedUser;
+  const {emailAddress} = context.authenticatedUser;
   const password = context.userPassword;
 
   const {
@@ -136,9 +133,8 @@ submit = () => {
     description,
     estimatedTime,
     materialsNeeded,
-    id,
-    errors
-  } = this.state.course;
+    id
+  } = this.state;
 
 
   // Create course
@@ -152,22 +148,23 @@ submit = () => {
 
 
 
-
 context.data.updateCourse(course, {emailAddress, password})
-    .then( errors=> {
-      if (!errors) {
+      .then( errors=> {
+        if (!errors) {
 
-           console.log('Course updated successfully');
-           this.props.history.push('/');
+             console.log('Course created successfully');
+             this.props.history.push('/');
 
-         } else  {
-          this.setState({ errors });
-         }})
-         .catch( err => { // handle rejected promises
-          this.setState({ errors });
-         });
+           } else  {
+            this.setState({ errors });
+           }})
+           .catch( errors => { // handle rejected promises
 
-}
+            this.setState({ errors });
+            console.log(errors);
+           });
+
+      }
 
 cancel = () => {
  this.props.history.push('/');

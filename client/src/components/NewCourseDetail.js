@@ -115,13 +115,13 @@ submit = () => {
 
   const { context } = this.props;
   const {emailAddress, userId} = context.authenticatedUser;
-
   const password = context.userPassword;
+
   const {
     title,
     description,
     estimatedTime,
-    materialsNeeded,
+    materialsNeeded
   } = this.state;
 
 
@@ -135,7 +135,7 @@ submit = () => {
   };
 
 
-//Will Return Null if Successful//will Return Erros if not
+//Will Return Null if Successful//will Return Errors if not
 context.data.createCourse(course, {emailAddress, password})
     .then( errors=> {
       if (!errors) {
@@ -147,8 +147,9 @@ context.data.createCourse(course, {emailAddress, password})
           this.setState({ errors });
          }})
          .catch( errors => { // handle rejected promises
-           console.log(errors);
+
           this.setState({ errors });
+          console.log(errors);
          });
 
 }

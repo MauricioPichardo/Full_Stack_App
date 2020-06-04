@@ -26,7 +26,6 @@ export default class CourseDetail extends React.PureComponent {
 
   await context.data.getCourse(this.props.match.params.id)
     .then(response => {
-      console.log(response);
       /*checks to make sure authenticated user is available prior to comparing IDs*/
       if (context.authenticatedUser != null) {
         /*compares ID of signed in and user*/
