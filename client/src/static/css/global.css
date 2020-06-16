@@ -245,12 +245,12 @@ body {
 }
 /* line 37, ../sass/global.sass */
 .header nav a {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 1);
   margin-left: 20px;
 }
 /* line 40, ../sass/global.sass */
 .header nav a:hover {
-  color: #fff;
+  color: #ccc;
 }
 
 /* line 44, ../sass/global.sass */

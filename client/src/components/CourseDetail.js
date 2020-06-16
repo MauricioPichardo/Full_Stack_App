@@ -1,5 +1,5 @@
 import React from 'react';
-import '../static/css/global.css';
+
 import { Link } from 'react-router-dom';
 import DeleteCourse from './DeleteCourse'
 import withContext from '../Context/index.js';
@@ -8,7 +8,7 @@ const DeleteCourseWithContext = withContext(DeleteCourse);
 const WithDelete = withRouter(DeleteCourseWithContext);
 const ReactMarkdown = require('react-markdown')
 
-export default class CourseDetail extends React.PureComponent {
+export default class RoleDetail extends React.PureComponent {
   state = {
 
       course: [],
@@ -66,7 +66,7 @@ export default class CourseDetail extends React.PureComponent {
                                           <Link className="button" to={{
                                           pathname:`/course/${id}/update`}}> Update Course</Link>
                                           <WithDelete course={course}/>
-                                          <Link className="button button-secondary" to='/'>Return to List</Link></div>
+                                          <Link className="button button-secondary" to='/careers'>Career Home</Link></div>
                               </div>
 
                     </div>
@@ -78,7 +78,7 @@ export default class CourseDetail extends React.PureComponent {
                   <div className="actions--bar">
                                   <div className="bounds">
                                           <div className="grid-100">
-                                        <Link className="button button-secondary" to='/'>Return to List</Link></div>
+                                        <Link className="button button-secondary" to='/careers'>Career Home</Link></div>
                               </div>
 
                   </div>
@@ -92,9 +92,9 @@ export default class CourseDetail extends React.PureComponent {
         <div className="bounds course--detail">
                       <div className="grid-66">
                                     <div className="course--header">
-                                      <h4 className="course--label">Course</h4>
+                                      <h4 className="course--label">Role</h4>
                                       <h3 className="course--title">{course.title}</h3>
-                                      <p>By {user}</p>
+
                                     </div>
                                     <div className="course--description">
                                         <ReactMarkdown source={course.description} />
@@ -107,12 +107,12 @@ export default class CourseDetail extends React.PureComponent {
                     <ul className="course--stats--list">
 
                                 <li className="course--stats--list--item">
-                                  <h4>Estimated Time</h4>
+                                  <h4>Reports To:</h4>
 
                                   <ReactMarkdown source={course.estimatedTime}  />
                                 </li>
                                 <li className="course--stats--list--item">
-                                  <h4>Materials Needed</h4>
+                                  <h4>Experience Needed:</h4>
                                   <ul><ReactMarkdown source={course.materialsNeeded} /></ul>
                                 </li>
                     </ul>

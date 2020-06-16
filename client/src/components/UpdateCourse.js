@@ -1,5 +1,4 @@
 import React, {Component}  from 'react';
-import '../static/css/global.css';
 import UpCourse from './UpCourse'
 
 export default class UpdatedCourse extends Component {

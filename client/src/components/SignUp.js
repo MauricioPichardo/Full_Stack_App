@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import '../static/css/global.css';
 import Form from './Form';
 import { Link } from 'react-router-dom';
 

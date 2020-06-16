@@ -1,5 +1,5 @@
 import React, {Component}  from 'react';
-import '../static/css/global.css';
+
 import CreateCourse from './CreateCourse'
 
 //Component to Initiate Create Course
