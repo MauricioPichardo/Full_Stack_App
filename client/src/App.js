@@ -21,7 +21,7 @@ import Contact from './components/ContactUs';
 import NewCourseDetail from './components/NewCourseDetail';
 import CourseDetail from './components/CourseDetail';
 import Footer from './components/Footer';
-
+import Learning from './components/Learning';
 
 const HeaderWithContext = withContext(Header);
 const AuthWithContext = withContext(Authenticated);
@@ -35,6 +35,7 @@ const UpdateCourseWithContext = withContext(UpdateCourse);
 const CareersWithContext = withContext(Careers);
 const ContactWithContext = withContext(Contact);
 const FooterWithContext = withContext(Footer);
+
 
 export default () => (
   <Router>
@@ -52,6 +53,7 @@ export default () => (
       <PrivateRoute path="/create_course" component={NewCourseDetailWithContext} />
       <Route exact path="/course/:id" component={CourseDetailWithContext} />
       <Route exact path="/careers" component={ContactWithContext} />
+      <Route exact path="/learning" component={Learning} />
       <PrivateRoute path="/course/:id/update" component={UpdateCourseWithContext} />
       <Route component={NotFound} />
       </Switch>
