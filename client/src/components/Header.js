@@ -19,7 +19,7 @@ export default class Header extends React.PureComponent {
 
     function toggleSubmenu() {
       var contentId = document.getElementById("submenu");
-            contentId.style.display == "block" ? contentId.style.display = "none" :
+            contentId.style.display === "block" ? contentId.style.display = "none" :
             contentId.style.display = "block";
      var ham = document.getElementById("hambars");
               ham.classList.toggle("change");
@@ -29,7 +29,7 @@ export default class Header extends React.PureComponent {
               e.preventDefault(e);
               console.log(e.target);
               var about = document.getElementById('aboutSub');
-              about.style.display == "block" ? about.style.display = "none" :
+              about.style.display === "block" ? about.style.display = "none" :
               about.style.display = "block";
               e.target.classList.toggle("active");
           }
@@ -38,9 +38,9 @@ export default class Header extends React.PureComponent {
               e.preventDefault(e);
               console.log(e.target);
               var learn = document.getElementById('aboutLearn');
-              learn.style.display == "block" ? learn.style.display = "none" :
+              learn.style.display === "block" ? learn.style.display = "none" :
               learn.style.display = "block";
-              e.target.classList.toggle("active");              
+              e.target.classList.toggle("active");
           }
 
     return (

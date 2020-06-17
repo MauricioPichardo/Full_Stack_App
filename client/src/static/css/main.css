@@ -447,6 +447,10 @@ width:500px;
 
       }
 
+/*Height Login */
+.bounds{
+  height:600px;
+}
 
 /* ==========================================================================
    #SHARED
@@ -5536,19 +5540,55 @@ button {
    ========================================================================== */
 .footer {
   position: relative;
-  padding: 75px 0;
-  padding-bottom: 95px;
- /* background-image: url("../images/bg-footer-01.jpg"); */
+  padding: 25px 0;
+  background-color: var(--main-purple-color);
+  display: flex;
+  flex-wrap:wrap;
 }
 
-.footer.bg-parallax {
-  background-position: 0 -245px;
-  background-attachment: scroll;
+.foot {
+  width:400px;
+  min-height:100px;
+  justify-content: center;
+  margin:auto;
+}
+
+.foot > a {
+  color:var(--main-white-color);
+}
+
+.footTitle {
+
+
+}
+
+.flogo{
+    height:70px;
+}
+
+.ftitle{
+    height:70px;
+}
+
+.col_1{
+  width:450px;
 }
 
 @media (max-width: 991px) {
   .footer.bg-parallax {
     background-position: center center;
+  }
+
+  .foot{
+    width:250px;
+    margin:auto;
+  }
+
+  .flogo{
+      height:40px;
+  }
+  .ftitle{
+      height:40px;
   }
 }
 
@@ -6320,6 +6360,8 @@ button {
 .menu-sidebar-nav-menu .menu-item .sub-menu .menu-item a:hover {
   color: #666;
 }
+
+
 
 /* ==========================================================================
    #NAVIGATION
@@ -8205,13 +8247,11 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--main-purple-color);
   z-index: 0;
 }
 
-.bg-overlay--p85 {
-  background: rgba(0, 0, 0, 0.85);
-}
+
 
 .bg-parallax {
   background-attachment: fixed;
